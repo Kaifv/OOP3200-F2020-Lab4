@@ -30,24 +30,33 @@ public:
 	
 	//Method
 	virtual void Initialize();
-	int CardRemaining();
+	
+	int CardRemaining() const;
+	
 	void DrawNextCard();
-	int DrawRandomCard(int randomIndex);
+	
+	int DrawRandomCard(int randomIndex) const;
+	
 	void Shuffle();
 	
 	// Rule of three:
 	//Destructor
 	~StandardDeck();
+	
 	//Copy constructor
-	StandardDeck(std::vector<PlayingCard*> copy_card);
+	StandardDeck(const StandardDeck& copy_card);
+	
 	//Assignment operator
-	StandardDeck& operator=(std::vector<PlayingCard*> copy_card);
+	StandardDeck& operator=(const StandardDeck& copy_card);
 
 	// Accessors:
-	const std::vector<PlayingCard> GetDeck() const;
+	std::vector<PlayingCard> GetDeck() const;
+	
 	// Mutators:
-	std::vector<PlayingCard> SetDeck(std::vector<PlayingCard*> otherdeck);
+	void SetDeck(const std::vector<PlayingCard>& otherdeck);
+	
 private:
+	
 	std::vector<PlayingCard> my_deck_;
 };
 

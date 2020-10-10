@@ -13,7 +13,7 @@ int main()
 	srand(time(nullptr)); // seed the random number generator
 
 	// create a my_deck_
-	
+	StandardDeck
 	// Show the my_deck_ object as initialized
 	Pause();
 	
