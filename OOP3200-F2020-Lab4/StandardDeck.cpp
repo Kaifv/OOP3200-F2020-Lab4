@@ -3,10 +3,10 @@
 
 
 // Default constructor
-StandardDeck::StandardDeck(std::vector<PlayingCard*> other_deck)
+StandardDeck::StandardDeck()
 {
-	//other_deck = NULL;
-	Initialize();
+	std::vector<PlayingCard*> my_deck_;
+	StandardDeck::Initialize();
 }
 
 //initialize method
@@ -14,12 +14,13 @@ void StandardDeck::Initialize()
 {
 	if(!my_deck_.empty())
 	{
-		my_deck_.empty();
+		my_deck_.clear();
 		for (int suit = 0; suit < PlayingCard::SUITS; suit++)
 		{
 			for(int rank=0; rank < PlayingCard::RANKS; rank++)
 			{
-				my_deck_.emplace_back(rank+1, suit,rank+1, true);
+				auto temp = new PlayingCard(rank, suit);
+				my_deck_.push_back(temp);
 			}
 		}
 	}
@@ -36,10 +37,10 @@ void StandardDeck::DrawNextCard()
 	my_deck_.erase(my_deck_.begin());
 }
 
-int StandardDeck::DrawRandomCard(int randomIndex) const
+int StandardDeck::DrawRandomCard() const
 {
-	randomIndex = rand() % my_deck_.empty();
-	return randomIndex;
+	return rand() % my_deck_.empty();
+	
 }
 
 void StandardDeck::Shuffle()
@@ -64,16 +65,17 @@ StandardDeck::StandardDeck(const StandardDeck& copy_card)
 StandardDeck& StandardDeck::operator=(const StandardDeck& copy_card)
 {
 	SetDeck(copy_card.my_deck_);
+	return *this;
 }
 
 //Getters 
-std::vector<PlayingCard> StandardDeck::GetDeck() const
+const std::vector<PlayingCard> StandardDeck::GetDeck() const
 {
 	return my_deck_;
 }
 
 //setter
-void StandardDeck::SetDeck(const std::vector<PlayingCard>& otherdeck)
+void StandardDeck::SetDeck(std::vector<PlayingCard> otherdeck)
 {
 	my_deck_ = otherdeck;
 }

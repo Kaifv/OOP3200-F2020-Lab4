@@ -26,7 +26,7 @@ class StandardDeck
 public:
 	// Initialization:
 	//default constructor
-	StandardDeck(std::vector<PlayingCard*> other_deck);
+	StandardDeck();
 	
 	//Method
 	virtual void Initialize();
@@ -35,7 +35,7 @@ public:
 	
 	void DrawNextCard();
 	
-	int DrawRandomCard(int randomIndex) const;
+	int DrawRandomCard() const;
 	
 	void Shuffle();
 	
@@ -50,10 +50,10 @@ public:
 	StandardDeck& operator=(const StandardDeck& copy_card);
 
 	// Accessors:
-	std::vector<PlayingCard> GetDeck() const;
+	const std::vector<PlayingCard> GetDeck() const;
 	
 	// Mutators:
-	void SetDeck(const std::vector<PlayingCard>& otherdeck);
+	void SetDeck(std::vector<PlayingCard> otherdeck);
 	
 private:
 	
