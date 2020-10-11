@@ -38,6 +38,8 @@ public:
 	int DrawRandomCard() const;
 	
 	void Shuffle();
+
+	std::string ToString();
 	
 	// Rule of three:
 	//Destructor

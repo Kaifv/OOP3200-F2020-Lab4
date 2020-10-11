@@ -20,15 +20,22 @@ int main()
 	Pause();
 	
 	// Draw the next card and show it
-	//deck.DrawNextCard();
+	deck.DrawNextCard();
+	std::cout << "After drawing next card the deck is " << deck.ToString();
+	Pause();
 	// Draw a random card and show it
-	deck.DrawRandomCard();
+ std::cout << "A random card is drawn from the deck, which is " << deck.DrawRandomCard();
+ Pause();
 	// Show the deck with the remaining cards
-	std::cout << "Number of cards remaining in the deck" << deck.CardRemaining() << std::endl;
+	std::cout << "Number of cards remaining in the deck " << deck.CardRemaining() << std::endl;
+	Pause();
 	// Shuffle the deck and show the result
 	deck.Shuffle();
+	std::cout << "After shuffling the card deck, it is " << deck.ToString();
+	Pause();
 	// Reset the deck and show the result
 	deck.Initialize();
+	std::cout << "Now we have initialized the cards again " << deck.ToString();
 }
 
 

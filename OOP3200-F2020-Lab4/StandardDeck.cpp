@@ -1,5 +1,6 @@
 #include "StandardDeck.h"
 
+#include <iostream>
 
 
 // Default constructor
@@ -12,15 +13,27 @@ StandardDeck::StandardDeck()
 //initialize method
 void StandardDeck::Initialize()
 {
+	if (my_deck_.empty())
+	{
+		
+		for (int suit = 0; suit < PlayingCard::SUITS; suit++)
+		{
+			for (int rank = 1; rank < PlayingCard::RANKS + 1; rank++)
+			{
+				PlayingCard newCard(rank, suit);
+				my_deck_.push_back(newCard);
+			}
+		}
+	}
 	if(!my_deck_.empty())
 	{
 		my_deck_.clear();
 		for (int suit = 0; suit < PlayingCard::SUITS; suit++)
 		{
-			for(int rank=0; rank < PlayingCard::RANKS; rank++)
+			for (int rank = 1; rank < PlayingCard::RANKS + 1; rank++)
 			{
-				auto temp = new PlayingCard(rank, suit);
-				my_deck_.push_back(temp);
+				PlayingCard newCard(rank, suit);
+				my_deck_.push_back(newCard);
 			}
 		}
 	}
@@ -39,17 +52,29 @@ void StandardDeck::DrawNextCard()
 
 int StandardDeck::DrawRandomCard() const
 {
-	return rand() % my_deck_.empty();
+	return rand() % my_deck_.size();
 	
 }
 
 void StandardDeck::Shuffle()
 {
-	for (int i = 0; i < +my_deck_.size(); i++)
+	for (int i = 0; i < my_deck_.size() - 1; i++)
 	{
-		int j = i + rand() % my_deck_.size();
+		int j = i + rand() % my_deck_.size() - i;
 		std::swap(my_deck_[i], my_deck_[j]);
 	}
+}
+
+std::string StandardDeck::ToString()
+{
+	std::string outputstring;
+	int object = my_deck_.size();
+	for (int i = 0; i < object; i++)
+	{
+		outputstring += my_deck_[i] ;
+		outputstring += "\n";
+	}
+	return outputstring;
 }
 
 StandardDeck::~StandardDeck()
@@ -79,3 +104,5 @@ void StandardDeck::SetDeck(std::vector<PlayingCard> otherdeck)
 {
 	my_deck_ = otherdeck;
 }
+
+
